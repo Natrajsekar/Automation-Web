@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<div class="container-fluid d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+  <div class="text-center">
+    <h5>File uploaded successfully!</h5>
+    <a class="btn btn-outline-success mt-3" href="{% url 'blog:index' %}">Go To Run Page</a>
+  </div>
+</div>
+{% endblock %}
+

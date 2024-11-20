@@ -1,0 +1,586 @@
+    {% extends 'blog/base.html' %}
+    {% block content %}
+
+        
+        <div class="container-fluid ">
+            <div class="row">
+              <marquee direction='right'>
+                <h2 >{{page_title | upper }}</h2>
+              </marquee>
+            </div>
+            <div class="row m-3">
+                <div class="col-4 mb-4">
+                    <div class="card custom-card-shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-4-md-8">
+                                    <h5 class="card-title">CCMS Check 1.95L</h5>
+                                    <p class="card-text">To Check Morethan 1.95Lakhs in CCMS.</p>
+                                    <div class="d-flex justify-content-between">
+                                      <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <span class="button__text">Upload File</span>
+                                        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                      </button>
+                                                                                    
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">CCMS File</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <form action="{% url 'blog:upload_file' %}" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div>
+                                                        <p><b>CCMS File Upload Here</b></p>
+                                                        <label for="id_myfile">Select a file:</label>
+                                                        <input type="file" name="myfile" id="id_myfile">
+                                                    </div>
+                                                    <p></p>
+                                                    <button type="reset" class="btn btn-danger">Clear</button>
+                                                    <button type="submit" class="btn btn-success">Upload</button>
+                                                </form>                                                    
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <form id="ccms" method="post" action="{% url 'blog:run_script' %}">
+                                              {% csrf_token %}
+                                              <button class="animated-button" type="submit">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                                                  <path
+                                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                  ></path>
+                                                </svg>
+                                                <span class="text">R U N</span>
+                                                <span class="circle"></span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                                                  <path
+                                                    d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                  ></path>
+                                                </svg>
+                                              </button>
+                                          </form>
+                                          <div id="loadingContainer" class="loading-container">
+                                            <div class="loading-spinner"></div>
+                                            <p>Loading...</p>
+                                        </div>
+                                        <script>
+                                          document.getElementById('ccms').addEventListener('submit', function() {
+                                              document.getElementById('loadingContainer').style.display = 'block'; // Show loading container
+                                      
+                                              // Example: Simulate script execution completion after 3 seconds
+                                              setTimeout(function() {
+                                                  document.getElementById('loadingContainer').style.display = 'none'; // Hide loading container
+                                                  // Add any additional logic after script execution completes
+                                              }, 3000); // Replace this with your actual script execution logic
+                                          });
+                                        </script>                                                                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 mb-4">
+                    <div class="card custom-card-shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                
+                                <div class="col-4-md-8">
+                                    <h5 class="card-title">RMR Check 1.95L</h5>
+                                    <p class="card-text">To Check Morethan 1.95Lakhs in RMR.</p>
+                                    <div class="d-flex justify-content-between" id="container" >
+                                      <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+                                        <span class="button__text">Upload File</span>
+                                        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                      </button>
+                                          
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">RMR File</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <form action="{% url 'blog:rmr_upload_file' %}" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div>
+                                                        <p><b>RMR File Upload Here</b></p>
+                                                        <label for="id_myfile_rmr">Select a file:</label>
+                                                        <input type="file" name="myfile_rmr" id="id_myfile_rmr">
+                                                    </div>
+                                                    <p></p>
+                                                    <button type="reset" class="btn btn-danger">Clear</button>
+                                                    <button type="submit" class="btn btn-success">Upload</button>
+                                                </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>                                          
+                                          <form id="rmr" method="post" action="{% url 'blog:rmr_script' %}">
+                                            {% csrf_token %}
+                                            <button class="animated-button" type="submit">
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                                                <path
+                                                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                ></path>
+                                              </svg>
+                                              <span class="text">R U N</span>
+                                              <span class="circle"></span>
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                                                <path
+                                                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                ></path>
+                                              </svg>
+                                            </button>
+                                          </form>
+                                          <div id="loading-overlay">
+                                            <div class="typewriter">
+                                                <div class="slide"><i></i></div>
+                                                <div class="paper"></div>
+                                                <div class="keyboard"></div>
+                                            </div>
+                                        </div>
+                                        <script>
+                                          document.addEventListener("DOMContentLoaded", function () {
+                                              const form = document.getElementById("rmr");
+                                              const loadingOverlay = document.getElementById("loading-overlay");
+                                       
+                                              form.addEventListener("submit", function (e) {
+                                                  // Prevent multiple submissions
+                                                  form.querySelector("button").disabled = false;
+                                       
+                                                  // Show loading overlay
+                                      loadingOverlay.style.display = "flex";
+                                              });
+                                       
+                                              // Simulate closure of the animation
+                                              setTimeout(() => {
+                                      loadingOverlay.style.display = "none";
+                                                  form.querySelector("button").disabled = true;
+                                              }, 3000);
+                                          });
+                                      </script>                                                                           
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 mb-4">
+                    <div class="card custom-card-shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                
+                                <div class="col-4-md-8">
+                                    <h5 class="card-title">Daily Receipt</h5>
+                                    <p class="card-text">To Find Missing Receipts.</p>
+                                    <div class="d-flex justify-content-between">
+                                      <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                        <span class="button__text">Upload File</span>
+                                        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                      </button>
+                                          
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Daily Receipt File</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <form action="{% url 'blog:re_2' %}" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div>
+                                                        <p><b>Daily Receipt Files Upload Here</b></p>
+                                                        <label for="1st_r">1st File:</label>
+                                                        <input type="file" name="first_file" id="1st_r"><br><br>
+                                                        
+                                                        <label for="2nd_r">2nd (EMP ID):</label>
+                                                        <input type="file" name="second_file" id="2nd_r"><br><br>
+                                                        
+                                                        <label for="3rd_r">3rd (Challan Status):</label>
+                                                        <input type="file" name="third_file" id="3rd_r"><br><br>
+                                                        
+                                                        <label for="4th_r">4th (Pre X):</label>
+                                                        <input type="file" name="four_file" id="4th_r"><br><br>
+                                                        
+                                                        <label for="5th_r">5th (Branch):</label>
+                                                        <input type="file" name="five_file" id="5th_r"><br><br>
+                                                        
+                                                        <label for="6th_r">6th (Emp Details(Role)):</label>
+                                                        <input type="file" name="six_file" id="6th_r"><br><br>
+                                                        
+                                                        <label for="7th_r">7th (Active list):</label>
+                                                        <input type="file" name="seven_file" id="7th_r"><br><br>
+                                                        
+                                                        <label for="8th_r">8th (New Rollrate):</label>
+                                                        <input type="file" name="eight_file" id="8th_r"><br><br>
+                                                        
+                                                        <label for="9th_r">9th (Used Rollrate):</label>
+                                                        <input type="file" name="nine_file" id="9th_r"><br><br>
+                                                        
+                                                        <label for="10th_r">10th (Expt Rollrate):</label>
+                                                        <input type="file" name="ten_file" id="10th_r"><br><br>
+                                                    </div>
+                                                    <br>
+                                                    <button type="reset" class="btn btn-danger">Clear</button>
+                                                    <button type="submit" class="btn btn-success">Upload</button>
+                                                </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <form method="post" action="{% url 'blog:receipt_script' %}">
+                                            {% csrf_token %}
+                                            <button class="animated-button">
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                                                <path
+                                                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                ></path>
+                                              </svg>
+                                              <span class="text">R U N</span>
+                                              <span class="circle"></span>
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                                                <path
+                                                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                ></path>
+                                              </svg>
+                                            </button>
+                                          </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 mb-4">
+                    <div class="card custom-card-shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                
+                                <div class="col-4-md-8">
+                                    <h5 class="card-title">Challan Status</h5>
+                                    <p class="card-text">Some quick example text for the post's content.</p>
+                                    <div class="d-flex justify-content-between">
+                                      <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+                                        <span class="button__text">Upload File</span>
+                                        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                      </button>
+                                          
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Challan Status File</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <form action="{% url 'blog:ch_file' %}" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div>
+                                                        <p><b>Challan Status Files Upload Here</b></p>
+                                                        <label for="1st_ch">1st File:</label>
+                                                        <input type="file" name="first" id="1st_ch"><br><br>
+                                                        
+                                                        <label for="2nd_ch">2nd(EMP ID):</label>
+                                                        <input type="file" name="second" id="2nd_ch"><br><br>
+                                                        
+                                                        <label for="3rd_ch">3rd(Challan Status):</label>
+                                                        <input type="file" name="third" id="3rd_ch"><br><br>
+                                                        
+                                                        <label for="4th_ch">4th(Updated branch):</label>
+                                                        <input type="file" name="four" id="4th_ch"><br><br>
+                                                        
+                                                        <label for="5th_ch">5th(Emp Details):</label>
+                                                        <input type="file" name="five" id="5th_ch"><br><br>
+                                                        
+                                                        <label for="6th_ch">6th(Active list):</label>
+                                                        <input type="file" name="six" id="6th_ch"><br><br>
+
+                                                        <label for="7th_ch">7th(Time file):</label>
+                                                        <input type="file" name="seven" id="7th_ch"><br><br>
+                                                    </div>
+                                                    <br>
+                                                    <button type="reset" class="btn btn-danger">Clear</button>
+                                                    <button type="submit" class="btn btn-success">Upload</button>
+                                                </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <form method="post" action="{% url 'blog:challan_script' %}">
+                                            {% csrf_token %}
+                                            <button class="animated-button">
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                                                <path
+                                                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                ></path>
+                                              </svg>
+                                              <span class="text">R U N</span>
+                                              <span class="circle"></span>
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                                                <path
+                                                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                ></path>
+                                              </svg>
+                                            </button>
+                                          </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 mb-4">
+                    <div class="card custom-card-shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                
+                                <div class="col-4-md-8">
+                                    <h5 class="card-title">Cash Deposition</h5>
+                                    <p class="card-text">Some quick example text for the post's content.</p>
+                                    <div class="d-flex justify-content-between">
+                                      <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal4" disabled>
+                                        <span class="button__text">Upload File</span>
+                                        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                      </button>
+                                          
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Cash Deposition File</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                  <form action="{% url 'blog:ca_file' %}" method="post" enctype="multipart/form-data">
+                                                    {% csrf_token %}
+                                                    <div>
+                                                        <p><b>Cash Deposition Files Upload Here</b></p>
+                                                        <label for="1st_ca">1st File:</label>
+                                                        <input type="file" name="first" id="1st_ca"><br><br>
+                                                        
+                                                        <label for="2nd_ca">2nd(EMP ID):</label>
+                                                        <input type="file" name="second" id="2nd_ca"><br><br>
+                                                        
+                                                        <label for="3rd_ca">3rd(Challan Status):</label>
+                                                        <input type="file" name="third" id="3rd_ca"><br><br>
+                                                        
+                                                        <label for="4th_ca">4th(Updated branch):</label>
+                                                        <input type="file" name="four" id="4th_ca"><br><br>
+                                                        
+                                                        <label for="5th_ca">5th(Emp Details):</label>
+                                                        <input type="file" name="five" id="5th_ca"><br><br>
+                                                        
+                                                        <label for="6th_ca">6th(Active list):</label>
+                                                        <input type="file" name="six" id="6th_ca"><br><br>
+
+                                                        <label for="7th_ca">7th(Time file):</label>
+                                                        <input type="file" name="seven" id="7th_ca"><br><br>
+                                                    </div>
+                                                    <br>
+                                                    <button type="reset" class="btn btn-danger">Clear</button>
+                                                    <button type="submit" class="btn btn-success">Upload</button>
+                                                </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <form method="post" action="{% url 'blog:cash_script' %}">
+                                            {% csrf_token %}
+                                            <button class="animated-button">
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                                                <path
+                                                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                ></path>
+                                              </svg>
+                                              <span class="text">R U N</span>
+                                              <span class="circle"></span>
+                                              <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                                                <path
+                                                  d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                                ></path>
+                                              </svg>
+                                            </button>
+                                          </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 mb-4">
+                    <div class="card custom-card-shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                
+                                <div class="col-4-md-8">
+                                    <h5 class="card-title">Tab Allocation</h5>
+                                    <p class="card-text">Some quick example text for the post's content.</p>
+                                    <div class="d-flex justify-content-between">
+                                      <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal5">
+                                        <span class="button__text">Upload File</span>
+                                        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                      </button>
+                                          
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">Tab Allocation File</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <p><b>Tab Allocation Files Upload Here</b></p>
+                                                            <label for="exampleInputFile">File input</label>
+                                                            <input type="file" id="exampleInputFile">
+                                                          </div>
+                                                          <p></p>
+                                                          <button type="submit" class="btn btn-success">Submit</button>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <button class="animated-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                                              <path
+                                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                              ></path>
+                                            </svg>
+                                            <span class="text">R U N</span>
+                                            <span class="circle"></span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                                              <path
+                                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                              ></path>
+                                            </svg>
+                                          </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 mb-4">
+                    <div class="card custom-card-shadow">
+                        <div class="card-body">
+                            <div class="row">
+                                
+                                <div class="col-4-md-8">
+                                    <h5 class="card-title">RTGS</h5>
+                                    <p class="card-text">Some quick example text for the post's content.</p>
+                                    <div class="d-flex justify-content-between">
+                                      <button type="button" class="button" data-bs-toggle="modal" data-bs-target="#exampleModal6">
+                                        <span class="button__text">Upload File</span>
+                                        <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+                                      </button>
+                                          
+                                          <!-- Modal -->
+                                          <div class="modal fade" id="exampleModal6" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                              <div class="modal-content">
+                                                <div class="modal-header">
+                                                  <h5 class="modal-title" id="exampleModalLabel">RTGS File</h5>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <p><b>RTGS Files Upload Here</b></p>
+                                                            <label for="exampleInputFile">File input</label>
+                                                            <input type="file" id="exampleInputFile">
+                                                          </div>
+                                                          <p></p>
+                                                          <button type="submit" class="btn btn-success">Submit</button>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                  
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                          <button class="animated-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="arr-2" viewBox="0 0 24 24">
+                                              <path
+                                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                              ></path>
+                                            </svg>
+                                            <span class="text">R U N</span>
+                                            <span class="circle"></span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="arr-1" viewBox="0 0 24 24">
+                                              <path
+                                                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+                                              ></path>
+                                            </svg>
+                                          </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 my-3">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1" aria-label="First">
+                                    <span aria-hidden="true">&laquo; Previous</span>
+                                </a>
+                            </li> 
+                            <li class="page-item">
+                                <a class="page-link" href="?page=20" aria-label="Last">
+                                    <span aria-hidden="true">Next &raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    
+                </div>
+            </div>
+            <div class="row">
+            
+            </div>
+            
+        </div>
+        
+
+    {% endblock %}
+    
